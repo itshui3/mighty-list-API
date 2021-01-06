@@ -1,19 +1,30 @@
 const {
     GraphQLObjectType,
-    GraphQLString
+    GraphQLString,
+
+    GraphQLList
 } = require('graphql')
 
 const {
-    resolveHello
+    helloResolver,
+    userResolver,
+    usersResolver
 } = require('../Resolvers')
+
+const UserType = require('./UserType.js')
 
 const QueryRoot = new GraphQLObjectType({
     name: 'Query',
     fields: () => ({
         hello: {
             type: GraphQLString,
-            resolve: resolveHello
-        }
+            resolve: helloResolver
+        },
+
+        users: {
+            type: new GraphQLList(UserType),
+            resolve: usersResolver
+        },
     })
 })
 
