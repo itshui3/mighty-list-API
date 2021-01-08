@@ -1,6 +1,7 @@
 const {
     GraphQLObjectType,
     GraphQLString,
+    GraphQLInt,
 
     GraphQLList
 } = require('graphql')
@@ -25,6 +26,12 @@ const QueryRoot = new GraphQLObjectType({
             type: new GraphQLList(UserType),
             resolve: usersResolver
         },
+
+        user: {
+            type: UserType,
+            args: { name: { type: GraphQLString } },
+            resolve: userResolver
+        }
     })
 })
 
