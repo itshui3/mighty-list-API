@@ -15,6 +15,10 @@ require('dotenv').config()
 // init app
 const app = require('express')()
 
+const cors = require('cors')
+
+app.use(cors())
+
 // import schema Roots
 const QueryRoot = require('./Types/_Query.js')
 

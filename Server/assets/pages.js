@@ -1,8 +1,22 @@
+const {
+    exerciseBoard, 
+    dietBoard, 
+    taskBoard, 
+    dietLinksBoard 
+} = require('./boards.js')
+
+const SpaghettiPages = {
+    id: 4,
+    title: 'Spaghetti',
+    pages: [],
+    boards: []
+}
+
 const DietPages = {
     id: 3,
     title: 'Diet',
-    pages: [],
-    boards: []
+    pages: [SpaghettiPages],
+    boards: [dietBoard]
 }
 
 const HealthPages = {
@@ -19,16 +33,10 @@ const ResearchPages = {
     boards: []
 }
 
-const huiPages = {
-    id: 0,
-    title: 'Root',
+const huiPages = [
+    HealthPages,
+    ResearchPages
+]
 
-    pages: [
-        HealthPages,
-        ResearchPages
-    ],
-    
-    boards: []
-}
 
 module.exports = { huiPages }
