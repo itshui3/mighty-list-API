@@ -21,10 +21,12 @@ app.use(cors())
 
 // import schema Roots
 const QueryRoot = require('./Types/_Query.js')
+const MutationRoot = require('./Types/_Mutation.js')
 
 // build schema
 const Schema = new GraphQLSchema({
-    query: QueryRoot
+    query: QueryRoot,
+    mutation: MutationRoot
 })
 
 // use graphql api app
