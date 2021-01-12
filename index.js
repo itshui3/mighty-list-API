@@ -1,6 +1,6 @@
 // enable environment vars
 require('dotenv').config()
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 // init a mongoose
 const mogu = new mongoose.Mongoose();
@@ -11,17 +11,15 @@ mogu.connect(process.env.DB_URI, {
     useUnifiedTopology: true,
     useFindAndModify: false,
     useCreateIndex: true
-}).then(res => {
+})
+
+mogu.connection.once('open', function() {
+
     console.log('db connection acquired..')
 
     const app = require('./Server/server.js')
-    app.listen(process.env.PORT, () => {
-        console.log(`Service listening on port: ${process.env.PORT}`)
+    app.listen(process.env.PORT || 4444, () => {
+        console.log(`service listening on port: ${process.env.PORT || 4444}`)
     })
-
-}).catch(err => {
-
-    console.log('db connection failed..')
-    console.log('error: ', err)
 
 })

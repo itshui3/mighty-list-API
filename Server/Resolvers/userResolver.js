@@ -1,4 +1,5 @@
 const users = require('../assets/users.js')
+const { userModel } = require('../../DB/model.js')
 
 const usersResolver = () => users
 const userResolver = (p, args) => {
@@ -12,16 +13,17 @@ const addUserResolver = (src, args) => {
     const username = args.name
     const userId = users.length
 
-    const newUser = {
-        id: userId,
-        name: username,
-        pages: [],
-        boards: []
-    }
+    // parse shit below vvv into mongoose model
+    // const newUser = {
+    //     id: userId,
+    //     name: username,
+    //     pages: [],
+    //     boards: []
+    // }
 
-    users.push(newUser)
+    // users.push(newUser)
 
-    return users.find(user => user.id === userId)
+    // return users.find(user => user.id === userId)
 }
 
 
