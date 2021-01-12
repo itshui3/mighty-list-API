@@ -9,9 +9,6 @@ const {
 
 } = require('graphql')
 
-// enable environment vars
-require('dotenv').config()
-
 // init app
 const app = require('express')()
 
