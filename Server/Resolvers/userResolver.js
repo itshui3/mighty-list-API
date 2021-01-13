@@ -1,29 +1,29 @@
 const users = require('../assets/users.js')
 const { userModel } = require('../../DB/model.js')
 
-const usersResolver = () => users
+const usersResolver = () => userModel.find().then(allUsers => allUsers)
+
 const userResolver = (p, args) => {
     console.log('in userResolver')
     return users.find((user) => user.name === args.name)
 }
 
+// parse this data next poma
+// [0] check parse-thru below
+// [1] check atlas to see if data is persist
 const addUserResolver = (src, args) => {
     console.log('in addUserResolver')
 
     const username = args.name
-    const userId = users.length
 
-    // parse shit below vvv into mongoose model
-    // const newUser = {
-    //     id: userId,
-    //     name: username,
-    //     pages: [],
-    //     boards: []
-    // }
+    const newUser = new userModel({ name: username, pages: [], boards: [] })
+    console.log(newUser)
 
-    // users.push(newUser)
+    return newUser.save().then(user => {
+        console.log('response user(?) in .save', user)
 
-    // return users.find(user => user.id === userId)
+        return user
+    })
 }
 
 
