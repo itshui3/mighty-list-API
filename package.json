@@ -4,6 +4,7 @@
   "description": "a back-end service to persist user data for the-might-list task management app",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
