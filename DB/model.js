@@ -8,19 +8,23 @@ const model = mongoose.model
 // [0] refer to client sourcecode to define types as necessary
 // [1] build user typing throughout client -> api -> db
 
-const pageSchema = Schema({
-// define fields
-})
-
 const boardSchema = Schema({
 // define fields
+    title: String,
+    tasks: String
+})
+
+const pageSchema = Schema({
+// define fields
+    title: String,
+    pages: [this],
+    boards: [boardSchema]
 })
 
 const userSchema = Schema({
-    name: String
-    // something like this vvv
-    // pages: [pageSchema]
-    // boards: [boardSchema]
+    name: String,
+    pages: [pageSchema],
+    boards: [boardSchema]
 })
 
 const userModel = model('user', userSchema)
