@@ -2,6 +2,7 @@ const {
     GraphQLObjectType,
     GraphQLList,
     GraphQLInt,
+    GraphQLID,
     GraphQLString
 } = require("graphql")
 
@@ -10,7 +11,7 @@ const BoardType = require('./BoardType.js')
 const PageType = new GraphQLObjectType({
     name: 'PageType',
     fields: () => ({
-        id: { type: GraphQLInt },
+        id: { type: GraphQLID },
         title: { type: GraphQLString },
 
         pages: {
