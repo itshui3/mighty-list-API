@@ -1,29 +1,31 @@
 const users = require('../assets/users.js')
-const { userModel } = require('../../DB/model.js')
+const { uModel } = require('../../DB/model.js')
 
-const usersResolver = () => userModel.find().then(allUsers => allUsers)
+const usersResolver = async () => await uModel.find().then(allUsers => allUsers)
 
-const userResolver = (p, args) => {
-    console.log('in userResolver')
-    return users.find((user) => user.name === args.name)
-}
+const userResolver = async (p, args) => await uModel.findOne({ name: args.name })
 
-// parse this data next poma
-// [0] check parse-thru below
-// [1] check atlas to see if data is persist
-const addUserResolver = (src, args) => {
-    console.log('in addUserResolver')
+
+const addUserResolver = async (src, args) => {
 
     const username = args.name
+    const newUser = new uModel({ name: username })
 
-    const newUser = new userModel({ name: username, pages: [], boards: [] })
-    console.log(newUser)
+    // 1.14.21 ***
+    // user is saving, but in attempting to return info to client
+    // client isn't able to parse it displays this error: 
 
-    return newUser.save().then(user => {
-        console.log('response user(?) in .save', user)
+    // "Unhandled Rejection (Error): Cannot read property 'catch' of undefined"
 
-        return user
-    })
+    // seems like newUser.save().then().catch()
+    // when I remove .catch() block it fixes this issue
+
+    // [0] clean - up clientside render, logic looks jank af
+    // [1] see what the data looks like coming back to FE
+
+    await newUser.save()
+
+    return newUser
 }
 
 

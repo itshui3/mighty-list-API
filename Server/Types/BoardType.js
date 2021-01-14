@@ -1,13 +1,14 @@
 const {
     GraphQLObjectType,
     GraphQLInt,
+    GraphQLID, 
     GraphQLString
 } = require('graphql')
 
 const BoardType = new GraphQLObjectType({
     name: 'BoardType',
     fields: () => ({
-        id: { type: GraphQLInt },
+        id: { type: GraphQLID },
         title: { type: GraphQLString },
         tasks: { type: GraphQLString }
     })

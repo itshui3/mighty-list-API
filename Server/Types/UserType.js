@@ -2,6 +2,7 @@ const {
     GraphQLObjectType,
     GraphQLInt,
     GraphQLString,
+    GraphQLID,
     GraphQLList
 } = require('graphql')
 
@@ -13,7 +14,7 @@ const { pageResolver } = require('../Resolvers/pageResolver')
 const UserType = new GraphQLObjectType({
     name: 'UserType',
     fields: () => ({
-        id: { type: GraphQLInt },
+        id: { type: GraphQLID },
         name: { type: GraphQLString },
 
         pages: { 
@@ -23,7 +24,7 @@ const UserType = new GraphQLObjectType({
 
         page: {
             type: PageType,
-            args: { id: {type: new GraphQLList(GraphQLInt) } },
+            args: { id: {type: new GraphQLList(GraphQLID) } },
             resolve: pageResolver
         },
 

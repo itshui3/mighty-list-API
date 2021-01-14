@@ -10,25 +10,25 @@ const model = mongoose.model
 
 const boardSchema = Schema({
 // define fields
-    title: String,
+    title: { type: String, required: true },
     tasks: String
 })
 
 const pageSchema = Schema({
 // define fields
-    title: String,
+    title: { type: String, required: true },
     pages: [this],
     boards: [boardSchema]
 })
 
-const userSchema = Schema({
-    name: String,
+const uSchema = Schema({
+    name: { type: String, unique: true, required: true },
     pages: [pageSchema],
     boards: [boardSchema]
 })
 
-const userModel = model('user', userSchema)
+const uModel = model('user', uSchema)
 
 module.exports = {
-    userModel
+    uModel
 }
