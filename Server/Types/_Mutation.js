@@ -1,7 +1,8 @@
 const {
     GraphQLObjectType,
 
-    GraphQLString
+    GraphQLString,
+    GraphQLNonNull
 } = require('graphql')
 
 const UserType = require('./UserType.js')
@@ -12,7 +13,9 @@ const MutationRoot = new GraphQLObjectType({
     fields: () => ({
         addUser: {
             type: UserType,
-            args: { name: { type: GraphQLString } },
+            args: { 
+                name: { type: GraphQLNonNull(GraphQLString) }
+            },
             resolve: addUserResolver
         }
     })
