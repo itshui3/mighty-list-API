@@ -12,16 +12,17 @@ const getCurPage = (nestSeq, curPage) => {
 
 const pageResolver = (par, args) => getCurPage(args.id, par)
 
-// const addPageResolver = (par, args) => {
-//     const curPage = getCurPage(args.id, par)
+const addPageResolver = (par, args) => {
+    const curPage = getCurPage(args.id, par)
 
-//     const newPage = {
+    const newPage = {
 
-//     }
+    }
 
-//     return curPage
-// }
+    return curPage
+}
 
 module.exports = {
-    pageResolver
+    pageResolver,
+    addPageResolver
 }

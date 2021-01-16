@@ -6,7 +6,9 @@ const {
 } = require('graphql')
 
 const UserType = require('./UserType.js')
-const { addUserResolver } = require('../Resolvers/userResolver')
+const PageType = require('./PageType.js')
+const { addUserResolver } = require('../Resolvers/userResolver.js')
+const { addPageResolver } = require('../Resolvers/pageResolver.js')
 
 const MutationRoot = new GraphQLObjectType({
     name: 'Mutation',
@@ -17,6 +19,16 @@ const MutationRoot = new GraphQLObjectType({
                 name: { type: GraphQLNonNull(GraphQLString) }
             },
             resolve: addUserResolver
+        },
+
+        addPage: {
+            type: PageType,
+            args: {
+                username: { type: GraphQLNonNull(GraphQLString) },
+                rootID: { type: GraphQLString }
+                // if null, assume nearest root is the user root
+            },
+            resolve: addPageResolver
         }
     })
 })
