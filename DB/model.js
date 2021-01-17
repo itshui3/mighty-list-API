@@ -22,8 +22,10 @@ const uSchema = Schema({
     boards: [boardSchema]
 })
 
+const pageModel = model('page', pageSchema)
 const uModel = model('user', uSchema)
 
 module.exports = {
-    uModel
+    uModel,
+    pageModel
 }
