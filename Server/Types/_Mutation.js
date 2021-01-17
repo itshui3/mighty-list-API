@@ -23,9 +23,9 @@ const MutationRoot = new GraphQLObjectType({
         addPage: {
             type: UserType,
             args: {
+                username: { type: GraphQLString },
                 title: { type: GraphQLNonNull(GraphQLString) },
                 rootID: { type: GraphQLString },
-                username: { type: GraphQLString }
                 // if null, assume nearest root is the user root
             },
             resolve: addPageResolver
