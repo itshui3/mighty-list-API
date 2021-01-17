@@ -1,9 +1,15 @@
 const { helloResolver } = require('./dummyResolvers.js')
 
-const { userResolver, usersResolver } = require('./userResolver.js')
+const { userResolver, usersResolver, addUserResolver } = require('./userResolver.js')
+const { pageResolver, addPageResolver } = require('./pageResolver.js')
 
 module.exports = {
     helloResolver,
+    // user resolvers
     userResolver,
-    usersResolver
+    usersResolver,
+    addUserResolver,
+    // page resolvers
+    pageResolver,
+    addPageResolver
 }

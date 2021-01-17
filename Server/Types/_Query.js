@@ -9,7 +9,9 @@ const {
 const {
     helloResolver,
     userResolver,
-    usersResolver
+    usersResolver,
+
+    pageResolver
 } = require('../Resolvers')
 
 const UserType = require('./UserType.js')
