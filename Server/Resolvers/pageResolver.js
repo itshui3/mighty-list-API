@@ -20,27 +20,29 @@ const addPageResolver = async (par, args) => {
 //     username: { type: GraphQLString }
     console.log('in addPageResolver')
 
-    console.log('constructing page')
     const newPage = new pageModel({ title: args.title })
-    console.log(newPage)
+
     let root
 
-    console.log('searching for user..')
     const user = await uModel.findOne({ name: args.username })
-    console.log(user)
 
-    console.log('determining root..')
+    console.log('determining root.. with rootID:', args.rootID)
     if (args.rootID && args.rootID.length > 0) {
-        root = await pageModel.findOne({ _id: args.rootID })
+        // pageModel can't fetch
+        try { root = await pageModel.findOne({ _id: args.rootID }) } catch(e) { console.log('error', e) }
+
     } else {
         root = user
     }
 
-    console.log(root)
-    root.pages.push(newPage)
+    if (root) {
+        root.pages.push(newPage) 
 
-    console.log('saving page')
-    await root.save()
+        try { await root.save() }
+        catch(e) { console.log('could not save newPage. error:', e)}
+    } else {
+        console.log('root validates false:', root)
+    }
 
     return user
 }
