@@ -16,10 +16,7 @@ const pageSchema = Schema({
         type: [mongoose.Schema.Types.ObjectId],
         ref: 'page'
     },
-    boards: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: 'board'
-    }
+    boards: [boardSchema]
 })
 
 const uSchema = Schema({
@@ -28,10 +25,7 @@ const uSchema = Schema({
         type: [mongoose.Schema.Types.ObjectId],
         ref: 'page'
     },
-    boards: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: 'board'
-    }
+    boards: [boardSchema]
 })
 
 const boardModel = model('board', boardSchema)
