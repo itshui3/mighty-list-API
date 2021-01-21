@@ -18,7 +18,7 @@ mongoose.connection.once('open', function() {
 
     const app = require('./Server/server.js')
     app.listen(process.env.PORT || 4444, () => {
-        console.log(`service listening on port: ${process.env.PORT || 4444}`)
+        console.log(`service client: http://localhost:${process.env.PORT || 4444}/graphql`)
     })
 
 })

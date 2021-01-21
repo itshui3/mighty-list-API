@@ -1,6 +1,13 @@
 const { helloResolver } = require('./dummyResolvers.js')
 
-const { userResolver, usersResolver, addUserResolver } = require('./userResolver.js')
+const {
+    usersResolver,
+    userResolver,
+    addUserResolver,
+    // resolve embedded pages/boards
+    userPageResolver,
+    userBoardResolver
+} = require('./userResolver.js')
 const { pageResolver, addPageResolver } = require('./pageResolver.js')
 
 module.exports = {
@@ -9,7 +16,11 @@ module.exports = {
     userResolver,
     usersResolver,
     addUserResolver,
+        // user embedded pages/boards resolvers
+        userPageResolver,
+        userBoardResolver,
     // page resolvers
     pageResolver,
-    addPageResolver
+    addPageResolver,
+        // page embedded pages/board resolvers
 }

@@ -1,12 +1,11 @@
 
-const { uModel } = require('../../DB/model.js')
+const { uModel, pageModel, boardModel } = require('../../DB/model.js')
 
 const usersResolver = async () => await uModel.find().then(allUsers => allUsers)
 
 const userResolver = async (p, args) => await uModel.findOne({ name: args.name })
 
-
-const addUserResolver = async (src, args) => {
+const addUserResolver = async (p, args) => {
 
     const newUser = new uModel({ name: args.name })
 
@@ -15,9 +14,15 @@ const addUserResolver = async (src, args) => {
     return newUser
 }
 
+const userPageResolver = async (p, args) => await pageModel.find({ _id: { $in: [...p.pages] } })
+
+const userBoardResolver = (p, args) => p.boards
 
 module.exports = {
     usersResolver,
     userResolver,
-    addUserResolver
+    addUserResolver,
+    // resolve embedded pages/boards
+    userPageResolver,
+    userBoardResolver
 }

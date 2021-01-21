@@ -15,25 +15,23 @@ const {
 } = require('../Resolvers')
 
 const UserType = require('./UserType.js')
+const PageType = require('./PageType')
 
 const QueryRoot = new GraphQLObjectType({
     name: 'Query',
     fields: () => ({
-        hello: {
-            type: GraphQLString,
-            resolve: helloResolver
-        },
-
-        users: {
-            type: new GraphQLList(UserType),
-            resolve: usersResolver
-        },
 
         user: {
             type: UserType,
             args: { name: { type: GraphQLString } },
             resolve: userResolver
-        }
+            // resolve user & pages/boards on user level
+        },
+
+        // page: {
+        //     type: 
+        // }
+
     })
 })
 

@@ -14,17 +14,9 @@ const PageType = new GraphQLObjectType({
         id: { type: GraphQLID },
         title: { type: GraphQLString },
 
-        pages: {
-            type: new GraphQLList(PageType),
-            resolve: (p, args) => {
-                console.log('p.pages', p.pages)
-                return p.pages
-            }
-        },
-
         page: {
-            type: PageType,
-            args: { title: {type: GraphQLString} },
+            type: new GraphQLList(PageType),
+            args: { title: { type: GraphQLString } },
         },
 
         boards: {
