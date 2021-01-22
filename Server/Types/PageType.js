@@ -8,25 +8,46 @@ const {
 
 const BoardType = require('./BoardType.js')
 
+const {
+    // page embedded pages/board resolvers
+    pagePageResolver,
+    pageBoardResolver,
+} = require('../Resolvers')
+
 const PageType = new GraphQLObjectType({
     name: 'PageType',
     fields: () => ({
         id: { type: GraphQLID },
         title: { type: GraphQLString },
 
-        page: {
+        pages: {
             type: new GraphQLList(PageType),
-            args: { title: { type: GraphQLString } },
+            resolve: pagePageResolver,
         },
 
         boards: {
             type: new GraphQLList(BoardType),
-            resolve: (p, args) => {
-                console.log('in boards resolver', p, p.boards)
-                return p.boards
-            }
+            resolve: pageBoardResolver
         }
     })
 })
+
+// const UserType = new GraphQLObjectType({
+//     name: 'UserType',
+//     fields: () => ({
+//         id: { type: GraphQLID },
+//         name: { type: GraphQLString },
+
+//         pages: { 
+//             type: new GraphQLList(PageType),
+//             resolve: userPageResolver
+//         },
+
+//         boards: {
+//             type: new GraphQLList(BoardType),
+//             resolve: userBoardResolver
+//         }
+//     })
+// })
 
 module.exports = PageType

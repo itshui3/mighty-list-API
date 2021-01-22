@@ -7,11 +7,10 @@ const {
 } = require('graphql')
 
 const {
-    helloResolver,
     userResolver,
     usersResolver,
 
-    pageResolver
+    pageResolver,
 } = require('../Resolvers')
 
 const UserType = require('./UserType.js')
@@ -28,9 +27,11 @@ const QueryRoot = new GraphQLObjectType({
             // resolve user & pages/boards on user level
         },
 
-        // page: {
-        //     type: 
-        // }
+        page: {
+            type: PageType,
+            args: { id: { type: GraphQLString } },
+            resolve: pageResolver
+        }
 
     })
 })
