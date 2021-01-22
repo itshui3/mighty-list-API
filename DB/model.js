@@ -12,20 +12,28 @@ const boardSchema = Schema({
 const pageSchema = Schema({
 // define fields
     title: { type: String, required: true },
-    pages: [this],
+    pages: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'page'
+    },
     boards: [boardSchema]
 })
 
 const uSchema = Schema({
     name: { type: String, unique: true, required: true },
-    pages: [pageSchema],
+    pages: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'page'
+    },
     boards: [boardSchema]
 })
 
+const boardModel = model('board', boardSchema)
 const pageModel = model('page', pageSchema)
 const uModel = model('user', uSchema)
 
 module.exports = {
     uModel,
-    pageModel
+    pageModel,
+    boardModel
 }

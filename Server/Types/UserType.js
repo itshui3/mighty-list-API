@@ -1,6 +1,5 @@
 const {
     GraphQLObjectType,
-    GraphQLInt,
     GraphQLString,
     GraphQLID,
     GraphQLList
@@ -9,7 +8,11 @@ const {
 const PageType = require('./PageType.js')
 const BoardType = require('./BoardType.js')
 
-const { pageResolver } = require('../Resolvers/pageResolver')
+const {
+    // resolve embedded pages/boards
+    userPageResolver,
+    userBoardResolver
+} = require('../Resolvers/userResolver')
 
 const UserType = new GraphQLObjectType({
     name: 'UserType',
@@ -19,18 +22,12 @@ const UserType = new GraphQLObjectType({
 
         pages: { 
             type: new GraphQLList(PageType),
-            resolve: (p, args) => p.pages
-        },
-
-        page: {
-            type: PageType,
-            args: { id: {type: new GraphQLList(GraphQLID) } },
-            resolve: pageResolver
+            resolve: userPageResolver
         },
 
         boards: {
             type: new GraphQLList(BoardType),
-            resolve: (p) => p.boards
+            resolve: userBoardResolver
         }
     })
 })
