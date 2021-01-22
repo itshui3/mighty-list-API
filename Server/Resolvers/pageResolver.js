@@ -40,13 +40,20 @@ const addPageResolver = async (par, args) => {
     }
 
     if (root) {
-        root.pages.push(newPage) 
+        root.pages.push(newPage._id) 
 
         try { await root.save() }
         catch(e) { 
-            console.log('could not save newPage. error:', e)
+            console.log('could not update root. error:', e)
             return e
         }
+
+        try { await newPage.save() }
+        catch(e) {
+            console.log('could not save page. error:', e)
+            return e
+        }
+        
     } else {
         console.log('root validates false:', root)
     }
