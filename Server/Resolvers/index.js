@@ -11,6 +11,7 @@ const {
 const { 
     pageResolver, 
     addPageResolver,
+    addPageResolverRoot,
     // resolve embedded page/boards in pageRoot
     pagePageResolver,
     pageBoardResolver
@@ -28,6 +29,7 @@ module.exports = {
     // page resolvers
     pageResolver,
     addPageResolver,
+    addPageResolverRoot,
         // page embedded pages/board resolvers
         pagePageResolver,
         pageBoardResolver,
