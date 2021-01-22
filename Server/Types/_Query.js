@@ -8,7 +8,6 @@ const {
 
 const {
     userResolver,
-    usersResolver,
 
     pageResolver,
 } = require('../Resolvers')

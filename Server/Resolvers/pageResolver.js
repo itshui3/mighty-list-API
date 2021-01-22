@@ -52,11 +52,11 @@ const addPageResolverRoot = async (par, args) => {
     //     title: { type: GraphQLNonNull(GraphQLString) },
     //     rootID: { type: GraphQLString },
     //     username: { type: GraphQLString }
-    console.log('in addPageResolverRoot')
+
     const newPage = new pageModel({ title: args.title })
-    console.log('newPage', newPage)
+
     let root = await uModel.findOne({ name: args.username })
-    console.log('root user', root)
+
     if (root) {
         root.pages.push(newPage._id) 
 
