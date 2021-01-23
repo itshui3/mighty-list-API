@@ -11,7 +11,7 @@ const addBoardPageResolver = async (p, args) => {
 
     try {
 
-        const parent = await pageModel.findOne({ _id: Types.ObjectId(args.rootID) }) 
+        const parent = await pageModel.findOne({ _id: args.rootID }) 
         console.log('parent page', parent)
         parent.boards.push(newBoard)
         await parent.save()
