@@ -16,6 +16,10 @@ const {
     pagePageResolver,
     pageBoardResolver
 } = require('./pageResolver.js')
+const {
+    addBoardPageResolver,
+    addBoardRootResolver
+} = require('./boardResolver')
 
 module.exports = {
     helloResolver,
@@ -33,4 +37,8 @@ module.exports = {
         // page embedded pages/board resolvers
         pagePageResolver,
         pageBoardResolver,
+
+    // board resolvers
+    addBoardPageResolver,
+    addBoardRootResolver
 }

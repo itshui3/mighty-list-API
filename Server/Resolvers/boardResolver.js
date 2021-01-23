@@ -1,33 +1,41 @@
+const { Types } = require('mongoose')
+
 const { boardModel, pageModel, uModel } = require('../../DB/model.js')
 
-const addBoardPageResolver = (p, args) => {
+const addBoardPageResolver = async (p, args) => {
 // add record to user, return user
 
-// [0] build board record
-    const newBoard = new boardModel({ title: args. title })
+    console.log('in addBoardPageResolver')
+    const newBoard = new boardModel({ title: args.title, tasks: '{}' })
+    console.log(newBoard)
 
-// [1] find page record & push board record
-    const parent = pageModel.findOne({ _id: args.rootID })
-// [1b] save page record
-    parent.push(newBoard)
-// [2] return page record
-    return parent
+    try {
+
+        const parent = await pageModel.findOne({ _id: Types.ObjectId(args.rootID) }) 
+        console.log('parent page', parent)
+        parent.boards.push(newBoard)
+        await parent.save()
+        return parent
+
+    } catch(e) { return e }
 }
 
-const addBoardRootResolver = (p, args) => {
+const addBoardRootResolver = async (p, args) => {
 // add record to page, return page
+    console.log('in add BoardRootResolver')
 
-// [0] build board record
-    const newBoard = new boardModel({ title: args. title })
-// [1] find user record & push board record
-    const parent = uModel.findOne({ name: args.username })
-// [1b] save user record
-    parent.push(newBoard)
-// [2] return user record
-    return parent
+    const newBoard = new boardModel({ title: args.title, tasks: '{}' })
+    console.log('newBoard', newBoard)
+
+    try {
+        const parent = await uModel.findOne({ name: args.username })
+        parent.boards.push(newBoard)
+        await parent.save()
+        return parent
+    } catch(e) { return e }
 }
 
-export {
+module.exports = {
     addBoardPageResolver,
     addBoardRootResolver
 }

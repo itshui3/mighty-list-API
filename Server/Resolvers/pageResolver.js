@@ -1,16 +1,7 @@
+const { Types } = require('mongoose')
 // helper function to traverse object to containing page of interest
 // might need something slightly diff for update/delete resolvers
 const { pageModel, uModel } = require('../../DB/model.js')
-
-// const getCurPage = (nestSeq, curPage) => {
-//     nestSeq.forEach(id => {
-//         const idx = curPage.pages.map(page => page.id).indexOf(id)
-
-//         curPage = curPage.pages[idx]
-//     })
-
-//     return curPage
-// }
 
 const pageResolver = async (par, args) => await pageModel.findOne({ _id: args.id })
 
