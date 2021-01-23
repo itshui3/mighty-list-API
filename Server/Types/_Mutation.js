@@ -12,7 +12,11 @@ const PageType = require('./PageType.js')
 const { 
     addUserResolver, 
     addPageResolver,
-    addPageResolverRoot
+    addPageResolverRoot,
+
+    addBoardRootResolver,
+    addBoardPageResolver
+    
 } = require('../Resolvers')
 
 const MutationRoot = new GraphQLObjectType({
@@ -44,7 +48,26 @@ const MutationRoot = new GraphQLObjectType({
                 // if null, assume nearest root is the user root
             },
             resolve: addPageResolverRoot
+        },
+
+        addBoardRoot: {
+            type: UserType,
+            args: {
+                username: { type: GraphQLNonNull(GraphQLString) },
+                title: { type: GraphQLNonNull(GraphQLString) }
+            },
+            resolve: addBoardRootResolver
+        },
+
+        addBoardPage: {
+            type: PageType,
+            args: {
+                rootID: { type: GraphQLNonNull(GraphQLString) },
+                title: { type: GraphQLNonNull(GraphQLString) }
+            },
+            resolve: addBoardPageResolver
         }
+
     })
 })
 

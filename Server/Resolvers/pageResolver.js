@@ -1,16 +1,7 @@
+const { Types } = require('mongoose')
 // helper function to traverse object to containing page of interest
 // might need something slightly diff for update/delete resolvers
 const { pageModel, uModel } = require('../../DB/model.js')
-
-// const getCurPage = (nestSeq, curPage) => {
-//     nestSeq.forEach(id => {
-//         const idx = curPage.pages.map(page => page.id).indexOf(id)
-
-//         curPage = curPage.pages[idx]
-//     })
-
-//     return curPage
-// }
 
 const pageResolver = async (par, args) => await pageModel.findOne({ _id: args.id })
 
@@ -52,11 +43,11 @@ const addPageResolverRoot = async (par, args) => {
     //     title: { type: GraphQLNonNull(GraphQLString) },
     //     rootID: { type: GraphQLString },
     //     username: { type: GraphQLString }
-    console.log('in addPageResolverRoot')
+
     const newPage = new pageModel({ title: args.title })
-    console.log('newPage', newPage)
+
     let root = await uModel.findOne({ name: args.username })
-    console.log('root user', root)
+
     if (root) {
         root.pages.push(newPage._id) 
 
