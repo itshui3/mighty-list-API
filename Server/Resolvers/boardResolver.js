@@ -22,10 +22,8 @@ const addBoardPageResolver = async (p, args) => {
 
 const addBoardRootResolver = async (p, args) => {
 // add record to page, return page
-    console.log('in add BoardRootResolver')
 
     const newBoard = new boardModel({ title: args.title, tasks: '{}' })
-    console.log('newBoard', newBoard)
 
     try {
         const parent = await uModel.findOne({ name: args.username })
