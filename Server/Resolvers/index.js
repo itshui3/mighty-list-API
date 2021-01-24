@@ -18,7 +18,8 @@ const {
 } = require('./pageResolver.js')
 const {
     addBoardPageResolver,
-    addBoardRootResolver
+    addBoardRootResolver,
+    updateBoardResolver
 } = require('./boardResolver')
 
 module.exports = {
@@ -40,5 +41,6 @@ module.exports = {
 
     // board resolvers
     addBoardPageResolver,
-    addBoardRootResolver
+    addBoardRootResolver,
+    updateBoardResolver
 }

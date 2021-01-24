@@ -4,18 +4,20 @@ const {
     GraphQLString,
     GraphQLNonNull,
 
-    GraphQLList
 } = require('graphql')
 
 const UserType = require('./UserType.js')
 const PageType = require('./PageType.js')
+const BoardType = require('./BoardType')
+
 const { 
     addUserResolver, 
     addPageResolver,
     addPageResolverRoot,
 
     addBoardRootResolver,
-    addBoardPageResolver
+    addBoardPageResolver,
+    updateBoardResolver
     
 } = require('../Resolvers')
 
@@ -66,6 +68,18 @@ const MutationRoot = new GraphQLObjectType({
                 title: { type: GraphQLNonNull(GraphQLString) }
             },
             resolve: addBoardPageResolver
+        },
+
+        updateBoard: {
+            type: BoardType,
+            args: {
+                username: { type: GraphQLNonNull(GraphQLString) },
+                pgId: { type: GraphQLNonNull(GraphQLString) },
+                boardId: { type: GraphQLNonNull(GraphQLString) },
+                title: { type: GraphQLNonNull(GraphQLString) },
+                tasks: { type: GraphQLNonNull(GraphQLString) }
+            },
+            resolve: updateBoardResolver
         }
 
     })
