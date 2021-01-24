@@ -33,7 +33,12 @@ const addBoardRootResolver = async (p, args) => {
     } catch(e) { return e }
 }
 
+const updateBoardResolver = async (p, args) => {
+
+}
+
 module.exports = {
     addBoardPageResolver,
-    addBoardRootResolver
+    addBoardRootResolver,
+    updateBoardResolver
 }
