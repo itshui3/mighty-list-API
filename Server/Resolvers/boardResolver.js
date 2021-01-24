@@ -6,7 +6,7 @@ const addBoardPageResolver = async (p, args) => {
 // add record to user, return user
 
     console.log('in addBoardPageResolver')
-    const newBoard = new boardModel({ title: args.title, tasks: '{}' })
+    const newBoard = new boardModel({ title: args.title, tasks: '[]' })
     console.log(newBoard)
 
     try {
@@ -23,7 +23,7 @@ const addBoardPageResolver = async (p, args) => {
 const addBoardRootResolver = async (p, args) => {
 // add record to page, return page
 
-    const newBoard = new boardModel({ title: args.title, tasks: '{}' })
+    const newBoard = new boardModel({ title: args.title, tasks: '[]' })
 
     try {
         const parent = await uModel.findOne({ name: args.username })

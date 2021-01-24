@@ -3,8 +3,7 @@ const {
 
     GraphQLString,
     GraphQLNonNull,
-
-    GraphQLList
+    
 } = require('graphql')
 
 const UserType = require('./UserType.js')
