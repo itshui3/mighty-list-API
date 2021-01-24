@@ -34,6 +34,28 @@ const addBoardRootResolver = async (p, args) => {
 }
 
 const updateBoardResolver = async (p, args) => {
+    // try just not returning shit
+    if (args.pgId.length > 0) {
+        // we update within a page record with positional $ operator
+        const draftPage = await pageModel.findOne({ _id: args.pgId })
+        const draftBoard = draftPage.boards.id(args.boardId)
+
+        draftBoard.title = args.title
+        draftBoard.tasks = args.tasks
+
+        await draftPage.save()
+        return draftBoard
+    } else {
+        // we update within a user record with positional $ operator
+        const draftUser = await uModel.findOne({ name: args.username })
+        const draftBoard = draftUser.boards.id(args.boardId)
+
+        draftBoard.title = args.title
+        draftBoard.tasks = args.tasks
+
+        await draftUser.save()
+        return draftBoard
+    }
 
 }
 
